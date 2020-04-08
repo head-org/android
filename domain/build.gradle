@@ -1,0 +1,11 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    testImplementation project(':testing')
+
+    // Native libraries
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    // Third-part libraries
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+}
