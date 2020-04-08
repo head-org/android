@@ -18,12 +18,12 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField( "string", "HOST_NAME", "hostname")
+            buildConfigField("String", "HOST_NAME", "\"hostname\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField( "string", "HOST_NAME", "hostname")
+            buildConfigField("String", "HOST_NAME", "\"hostname\"")
         }
     }
 
@@ -46,5 +46,5 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:$googleMapsServicesVersion"
 
     // Third-part libraries
-    implementation "org.koin:koin-core:$koinVersion"
+    implementation "org.koin:koin-android:$koinVersion"
 }
