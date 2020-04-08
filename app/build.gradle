@@ -17,9 +17,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField( "string", "HOST_NAME", "hostname")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField( "string", "HOST_NAME", "hostname")
         }
     }
 
