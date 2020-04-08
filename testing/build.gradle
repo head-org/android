@@ -1,0 +1,9 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    // Native libraries
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    // Testing
+    api "junit:junit:$junitVersion"
+}

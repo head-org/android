@@ -1,0 +1,9 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    api project(':domain')
+    testImplementation project(':testing')
+
+    // Native libraries
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+}

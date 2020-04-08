@@ -32,21 +32,15 @@ android {
 }
 
 dependencies {
+    implementation project(':data')
+    implementation project(':datasource-network')
+    implementation project(':feature-commons')
+    implementation project(':feature-main')
+
     // Native libraries
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "androidx.core:core-ktx:$kotlinExtensionsVersion"
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "com.google.android.gms:play-services-maps:$googleMapsServicesVersion"
 
     // Third-part libraries
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "org.koin:koin-core:$koinVersion"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
-
-    // Testing
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$junitExtVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 }

@@ -1,0 +1,12 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation project(':data')
+    testImplementation project(':testing')
+
+    // Native libraries
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    // Third-part libraries
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+}

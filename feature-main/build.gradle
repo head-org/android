@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.compikeSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName rootProject.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
+
+dependencies {
+    implementation project(':feature-commons')
+    implementation project(':navigation')
+    testApi project(':testing')
+    androidTestApi project(':testing-android')
+
+    // Native libraries
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.core:core-ktx:$kotlinExtensionsVersion"
+}
