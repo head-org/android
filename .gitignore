@@ -59,4 +59,4 @@ fastlane/readme.md
 *.orig
 
 # Google Maps API Key
-debug/
+/app/src/debug/res/values/google_maps_api.xml
