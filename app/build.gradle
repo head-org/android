@@ -42,7 +42,6 @@ dependencies {
     implementation project(':feature-main')
 
     // Native libraries
-    implementation "com.google.android.material:material:$materialVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "com.google.android.gms:play-services-maps:$googleMapsServicesVersion"
 
