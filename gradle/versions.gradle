@@ -15,6 +15,7 @@ ext {
     kotlinExtensionsVersion = '1.2.0'
     navigationVersion = '2.2.1'
     googleMapsServicesVersion = '17.0.0'
+    materialVersion = '1.1.0'
 
     // Third-part libraries
     retrofitVersion = '2.8.1'
