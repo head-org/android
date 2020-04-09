@@ -23,5 +23,8 @@ dependencies {
 
     // Native libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    implementation "com.google.android.material:material:$materialVersion"
+    api "com.google.android.material:material:$materialVersion"
+
+    // Third-part libraries
+    api "org.koin:koin-android:$koinVersion"
 }
