@@ -1,7 +1,7 @@
-package com.head.covidapp.feature.main.ui.map
+package com.head.covidapp.main.ui.map
 
 import androidx.fragment.app.Fragment
-import com.head.covidapp.feature.main.R
+import com.head.covidapp.main.R
 
 class MapFragment : Fragment(R.layout.maps_fragment) {
 }

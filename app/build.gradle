@@ -18,12 +18,12 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "HOST_NAME", "\"hostname\"")
+            buildConfigField("String", "HOST_NAME", "\"http://localhost:5000/\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "HOST_NAME", "\"hostname\"")
+            buildConfigField("String", "HOST_NAME", "\"http://localhost:5000/\"")
         }
     }
 
@@ -43,8 +43,4 @@ dependencies {
 
     // Native libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    implementation "com.google.android.gms:play-services-maps:$googleMapsServicesVersion"
-
-    // Third-part libraries
-    implementation "org.koin:koin-android:$koinVersion"
 }

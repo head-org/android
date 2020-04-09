@@ -18,7 +18,7 @@ class MainApiClient(isLoggingEnable: Boolean, appHost: String) {
             .build()
     }
 
-    val builder by lazy {
+    val builder : Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(appHost)
             .client(client)
