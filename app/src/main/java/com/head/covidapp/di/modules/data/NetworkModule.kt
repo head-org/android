@@ -6,5 +6,6 @@ import org.koin.dsl.module
 
 val networkModule = module {
 
-    single { MainApiClient(BuildConfig.DEBUG, BuildConfig.HOST_NAME) }
+    // Api Clients
+    single { MainApiClient(BuildConfig.DEBUG, BuildConfig.HOST_NAME, BuildConfig.HEADER) }
 }

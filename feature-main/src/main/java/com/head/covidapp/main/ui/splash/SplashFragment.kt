@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.head.covidapp.domain.models.message.MessageModel
 import com.head.covidapp.main.R
+import com.head.covidapp.main.ui.map.MapFragment.Companion.MESSAGES
 import org.koin.android.ext.android.inject
+import java.io.Serializable
 
 class SplashFragment : Fragment(R.layout.splash_fragment), SplashContract.View {
 
@@ -27,7 +29,10 @@ class SplashFragment : Fragment(R.layout.splash_fragment), SplashContract.View {
 
     override fun navigateToMapFragment(messageList: List<MessageModel>?) {
         view?.let {
-            Navigation.findNavController(it).navigate(R.id.splashFragment_to_mapFragment)
+            val bundle: Bundle? = Bundle()
+            bundle?.putSerializable(MESSAGES, messageList as? Serializable)
+            Navigation.findNavController(it)
+                .navigate(R.id.splashFragment_to_mapFragment, bundle)
         }
     }
 }

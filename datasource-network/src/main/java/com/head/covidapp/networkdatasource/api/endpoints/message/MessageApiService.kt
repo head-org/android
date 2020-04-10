@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface MessageApiService {
 
-    @GET("api/Posts")
+    @GET("api/posts")
     suspend fun getMessages(): List<MessageApiModel>
 }
