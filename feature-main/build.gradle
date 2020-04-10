@@ -27,4 +27,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.core:core-ktx:$kotlinExtensionsVersion"
     implementation "com.google.android.material:material:$materialVersion"
+    implementation "com.google.android.gms:play-services-maps:$googlePlayServicesVersion"
+    implementation "com.google.android.gms:play-services-location:$googlePlayServicesVersion"
 }

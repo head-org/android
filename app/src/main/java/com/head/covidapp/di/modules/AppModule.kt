@@ -1,10 +1,13 @@
 package com.head.covidapp.di.modules
 
 import com.head.covidapp.di.modules.data.networkModule
-import org.koin.dsl.module
+import com.head.covidapp.feature.main.di.mainModule
+import org.koin.core.module.Module
 
-val appModule = module {
-    listOf(
-        networkModule
-    )
+private val dataModules = listOf(networkModule)
+private val featureModules = listOf(mainModule)
+
+val appModule = mutableListOf<Module>().apply {
+    addAll(dataModules)
+    addAll(featureModules)
 }
