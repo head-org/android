@@ -18,12 +18,14 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "HOST_NAME", "\"hostname\"")
+            buildConfigField("String", "HOST_NAME", "\"HOST\"")
+            buildConfigField("String", "HEADER", "\"token\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "HOST_NAME", "\"hostname\"")
+            buildConfigField("String", "HOST_NAME", "\"HOST\"")
+            buildConfigField("String", "HEADER", "\"token\"")
         }
     }
 
@@ -43,8 +45,4 @@ dependencies {
 
     // Native libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    implementation "com.google.android.gms:play-services-maps:$googleMapsServicesVersion"
-
-    // Third-part libraries
-    implementation "org.koin:koin-android:$koinVersion"
 }
