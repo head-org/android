@@ -1,4 +1,4 @@
-package com.head.covidapp.main.ui
+package com.head.covidapp.feature.main.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import com.head.covidapp.main.R

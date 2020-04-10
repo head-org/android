@@ -45,4 +45,7 @@ dependencies {
 
     // Native libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    // Third-part libraries
+    implementation "org.koin:koin-android:$koinVersion"
 }

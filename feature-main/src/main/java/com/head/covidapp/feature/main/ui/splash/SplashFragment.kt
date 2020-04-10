@@ -1,12 +1,13 @@
-package com.head.covidapp.main.ui.splash
+package com.head.covidapp.feature.main.ui.splash
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.head.covidapp.domain.models.message.MessageModel
+import com.head.covidapp.feature.main.ui.map.MapFragment.Companion.MESSAGES
 import com.head.covidapp.main.R
-import com.head.covidapp.main.ui.map.MapFragment.Companion.MESSAGES
+import com.head.covidapp.main.ui.splash.SplashContract
 import org.koin.android.ext.android.inject
 import java.io.Serializable
 
