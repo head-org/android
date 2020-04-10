@@ -1,11 +1,15 @@
-package com.head.covidapp.main.ui.splash
+package com.head.covidapp.feature.main.ui.splash
 
 import com.head.covidapp.domain.arch.callback.onCallback
 import com.head.covidapp.domain.usecases.GetMessagesUseCase
+import com.head.covidapp.feature.main.ui.mapper.MapperMessageUiModel
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class SplashPresenter(val getMessagesUseCase: GetMessagesUseCase) : SplashContract.Presenter,
+class SplashPresenter(
+    val getMessagesUseCase: GetMessagesUseCase,
+    val mapperMessageUiModel: MapperMessageUiModel
+) : SplashContract.Presenter,
     CoroutineScope {
 
     override var view: SplashContract.View? = null
@@ -19,10 +23,10 @@ class SplashPresenter(val getMessagesUseCase: GetMessagesUseCase) : SplashContra
         launch {
             getMessagesUseCase().onCallback(
                 {
-                    view?.navigateToMapFragment(it)
+                    view?.navigateToMapFragment(mapperMessageUiModel.map(it))
                 },
                 {
-                    view?.navigateToMapFragment(null)
+                    view?.navigateToMapFragment(mapperMessageUiModel.map(null))
                 }
             )
         }

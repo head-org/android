@@ -18,7 +18,6 @@ android {
 
 dependencies {
     implementation project(':feature-commons')
-    implementation project(':navigation')
     testApi project(':testing')
     androidTestApi project(':testing-android')
 
@@ -26,5 +25,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.core:core-ktx:$kotlinExtensionsVersion"
-    implementation "com.google.android.material:material:$materialVersion"
+    implementation "com.google.android.gms:play-services-maps:$googlePlayServicesVersion"
+    implementation "com.google.android.gms:play-services-location:$googlePlayServicesVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 }

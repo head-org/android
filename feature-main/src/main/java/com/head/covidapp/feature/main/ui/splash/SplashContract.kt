@@ -1,13 +1,13 @@
-package com.head.covidapp.main.ui.splash
+package com.head.covidapp.feature.main.ui.splash
 
-import com.head.covidapp.domain.models.message.MessageModel
 import com.head.covidapp.feature.commons.arch.contract.BaseContract
+import com.head.covidapp.feature.main.ui.model.MessageUiModel
 
 interface SplashContract {
 
     interface View : BaseContract.View {
 
-        fun navigateToMapFragment(messageList: List<MessageModel>?)
+        fun navigateToMapFragment(messageUiModel: MessageUiModel)
     }
 
     interface Presenter : BaseContract.Presenter<View> {
