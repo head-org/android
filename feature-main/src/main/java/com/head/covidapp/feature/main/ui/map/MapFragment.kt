@@ -9,7 +9,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.head.covidapp.extensions.checkPermissions
 import com.head.covidapp.extensions.requestPermission
-import com.head.covidapp.feature.main.R
+import com.head.covidapp.main.R
 import kotlinx.android.synthetic.main.maps_fragment.*
 import org.koin.android.ext.android.inject
 
@@ -69,7 +69,8 @@ class MapFragment : Fragment(R.layout.maps_fragment), MapContract.View, OnMapRea
     override fun addMarkers() {
     }
 
-    private companion object {
+    companion object {
         const val COARSE_PERMISSION = Manifest.permission.ACCESS_COARSE_LOCATION
+        const val MESSAGES = "messages"
     }
 }

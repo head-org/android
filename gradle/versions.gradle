@@ -14,14 +14,15 @@ ext {
     appCompatVersion = '1.1.0'
     kotlinExtensionsVersion = '1.2.0'
     navigationVersion = '2.2.1'
-    googlePlayServicesVersion = '17.0.0'
     materialVersion = '1.1.0'
+    googlePlayServicesVersion = '17.0.0'
 
     // Third-part libraries
     retrofitVersion = '2.8.1'
     koinVersion = '2.1.5'
     coroutinesVersion = '1.3.5'
     okHttpVersion = '4.5.0'
+    gsonVersion = '2.8.6'
 
     // Testing
     junitVersion = '4.12'
