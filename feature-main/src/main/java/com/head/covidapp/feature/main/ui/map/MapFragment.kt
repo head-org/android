@@ -21,7 +21,6 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import com.head.covidapp.extensions.checkPermissions
-import com.head.covidapp.extensions.requestPermission
 import com.head.covidapp.feature.main.ui.model.MessageUiModel
 import com.head.covidapp.main.R
 import kotlinx.android.synthetic.main.map_fragment.*
@@ -84,10 +83,6 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
         progressBar.hide()
     }
 
-    override fun disableIndicatorsButtons() {
-        googleMap?.uiSettings?.isMapToolbarEnabled = false
-    }
-
     override fun addMarkers(messageUiModel: MessageUiModel) {
         messageUiModel.messageList.forEach {
             googleMap?.addMarker(
@@ -104,7 +99,7 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
         }
     }
 
-    override fun setUpInfoMarkers() {
+    override fun configMarkers() {
         googleMap?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
             override fun getInfoContents(marker: Marker?): View? {
                 val info = LinearLayout(context)
@@ -134,7 +129,7 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
         } ?: false
 
     override fun requestPermissions() {
-        activity?.requestPermission(arrayOf(COARSE_PERMISSION, FINE_PERMISSION), PERMISSION_ID)
+        requestPermissions(arrayOf(COARSE_PERMISSION, FINE_PERMISSION), PERMISSION_ID)
     }
 
     override fun showErrorPermissions() {
@@ -199,6 +194,8 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
             this.uiSettings.apply {
                 this.isZoomGesturesEnabled = false
                 this.isScrollGesturesEnabled = false
+                this.isMapToolbarEnabled = false
+                this.isCompassEnabled = false
             }
         }
     }

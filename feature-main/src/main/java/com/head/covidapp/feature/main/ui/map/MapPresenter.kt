@@ -18,11 +18,10 @@ class MapPresenter : MapContract.Presenter {
     }
 
     override fun onMapReady() {
-        view?.disableIndicatorsButtons()
         takeIf { messageUiModel.messageList.isNotEmpty() }?.let {
             view?.apply {
                 this.addMarkers(messageUiModel)
-                this.setUpInfoMarkers()
+                this.configMarkers()
                 this.hideProgress()
                 takeIf { this.checkPermissions() }?.let {
                     manageLocation()

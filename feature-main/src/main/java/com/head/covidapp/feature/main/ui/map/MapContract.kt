@@ -11,11 +11,9 @@ interface MapContract {
 
         fun hideProgress()
 
-        fun disableIndicatorsButtons()
-
         fun addMarkers(messageUiModel: MessageUiModel)
 
-        fun setUpInfoMarkers()
+        fun configMarkers()
 
         fun checkPermissions(): Boolean
 
