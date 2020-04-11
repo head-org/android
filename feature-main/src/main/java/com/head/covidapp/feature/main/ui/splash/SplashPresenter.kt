@@ -9,8 +9,7 @@ import kotlin.coroutines.CoroutineContext
 class SplashPresenter(
     val getMessagesUseCase: GetMessagesUseCase,
     private val mapperMessageUiModel: MapperMessageUiModel
-) : SplashContract.Presenter,
-    CoroutineScope {
+) : SplashContract.Presenter, CoroutineScope {
 
     override var view: SplashContract.View? = null
     private val job: Job = SupervisorJob()
@@ -21,14 +20,23 @@ class SplashPresenter(
 
     override fun getMessages() {
         launch {
-            getMessagesUseCase().onCallback(
-                {
-                    view?.navigateToMapFragment(mapperMessageUiModel.map(it))
-                },
-                {
-                    view?.navigateToMapFragment(mapperMessageUiModel.map(null))
-                }
-            )
+            val animatorDeferred = async {
+                view?.startAnimation()
+            }
+            val messageListDeferred = async {
+                getMessagesUseCase()
+            }
+
+            animatorDeferred.await()
+            messageListDeferred.await()
+                .onCallback(
+                    {
+                        view?.navigateToMapFragment(mapperMessageUiModel.map(it))
+                    },
+                    {
+                        view?.navigateToMapFragment(mapperMessageUiModel.map(null))
+                    }
+                )
         }
     }
 
