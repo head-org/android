@@ -4,13 +4,15 @@
     <!-- Map Fragment -->
     <string name="permissions_error">Please, enable the location permission to enjoy a better app experience.</string>
     <string name="location_gps_error">Please, enable the GPS in your device settings to enjoy a better app experience.</string>
-    <string name="location_error">Please, enable the GPS in your device settings to enjoy a better app experience.</string>
+    <string name="location_error">It was not possible to retrieve your location.</string>
     <string name="post_error">The message couldn\'t be published.</string>
 
     <!-- Full Screen Dialog -->
     <string name="new_message">New message</string>
     <string name="title_hint">Title</string>
-    <string name="message_hint">Message</string>
+    <string name="title_helper">Message header</string>
+    <string name="description_hint">Description</string>
+    <string name="description_helper">Explain your need or request</string>
     <string name="mandatory_field">Mandatory field</string>
 
     <!-- Menu -->

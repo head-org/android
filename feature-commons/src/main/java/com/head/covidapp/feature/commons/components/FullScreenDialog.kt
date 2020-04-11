@@ -28,7 +28,7 @@ class FullScreenDialog(private var onStateAdapterClicked: ((Pair<String, String>
         val toolbar = toolbarFullScreenDialog as? MaterialToolbar
         toolbar?.apply {
             this.setTitle(R.string.new_message)
-            this.setNavigationIcon(R.drawable.ic_close_black_24dp)
+            this.setNavigationIcon(R.drawable.ic_close_white_24dp)
             this.setNavigationOnClickListener {
                 dismiss()
             }

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Miso</string>
+
+    <!-- Map Fragment -->
+    <string name="permissions_error">Si us plau, activi el seu permís de localització per a disfrutar d\'una millor experiencia d\'usuari.</string>
+    <string name="location_gps_error">Si us plau, activi el GPS en la configuració del seu dispositiu per a disfrutar d\'una millor experiencia d\'usuari.</string>
+    <string name="location_error">No ha sigut possible recuperar la seva localizació.</string>
+    <string name="post_error">Aquest missatge no ha pogut ser publicat.</string>
+
+    <!-- Full Screen Dialog -->
+    <string name="new_message">Nou missatge</string>
+    <string name="title_hint">Títol</string>
+    <string name="title_helper">Capçalera del missatge</string>
+    <string name="description_hint">Descripció</string>
+    <string name="description_helper">Expliqui la seva necessitat o petició</string>
+    <string name="mandatory_field">Camp obligatori</string>
+
+    <!-- Menu -->
+    <string name="save">Desar</string>
+
+</resources>
