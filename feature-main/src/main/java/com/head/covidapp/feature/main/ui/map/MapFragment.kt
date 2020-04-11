@@ -71,7 +71,9 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
     override fun onDestroy() {
         super.onDestroy()
 
-        map.onDestroy()
+        if (map != null) {
+            map.onDestroy()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
