@@ -11,7 +11,7 @@ val mainModule = module {
 
     // Presenters
     factory<SplashContract.Presenter> { SplashPresenter(get(), get()) }
-    factory<MapContract.Presenter> { MapPresenter() }
+    factory<MapContract.Presenter> { MapPresenter(get()) }
 
     // Mappers
     single { MapperMessageUiModel() }

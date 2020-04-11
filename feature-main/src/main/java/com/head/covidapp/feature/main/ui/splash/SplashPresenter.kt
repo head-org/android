@@ -8,7 +8,7 @@ import kotlin.coroutines.CoroutineContext
 
 class SplashPresenter(
     val getMessagesUseCase: GetMessagesUseCase,
-    val mapperMessageUiModel: MapperMessageUiModel
+    private val mapperMessageUiModel: MapperMessageUiModel
 ) : SplashContract.Presenter,
     CoroutineScope {
 
