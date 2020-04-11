@@ -1,7 +1,10 @@
 package com.head.covidapp.feature.main.ui.map
 
 import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Typeface
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -9,13 +12,15 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.snackbar.Snackbar
 import com.head.covidapp.extensions.checkPermissions
-import com.head.covidapp.extensions.requestPermission
 import com.head.covidapp.feature.main.ui.model.MessageUiModel
 import com.head.covidapp.main.R
 import kotlinx.android.synthetic.main.map_fragment.*
@@ -25,9 +30,8 @@ import org.koin.android.ext.android.inject
 class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapReadyCallback {
 
     private val presenter: MapContract.Presenter by inject()
-    private lateinit var messages: MessageUiModel
     private var googleMap: GoogleMap? = null
-    private lateinit var location: FusedLocationProviderClient
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -79,16 +83,6 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
         progressBar.hide()
     }
 
-    override fun checkPermissions(): Boolean = context?.checkPermissions(COARSE_PERMISSION) ?: false
-
-    override fun requestPermissions() {
-        activity?.requestPermission(COARSE_PERMISSION)
-    }
-
-    override fun disableIndicatorsButtons() {
-        googleMap?.uiSettings?.isMapToolbarEnabled = false
-    }
-
     override fun addMarkers(messageUiModel: MessageUiModel) {
         messageUiModel.messageList.forEach {
             googleMap?.addMarker(
@@ -105,7 +99,7 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
         }
     }
 
-    override fun setUpInfoMarkers() {
+    override fun configMarkers() {
         googleMap?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
             override fun getInfoContents(marker: Marker?): View? {
                 val info = LinearLayout(context)
@@ -129,8 +123,88 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
         })
     }
 
+    override fun checkPermissions(): Boolean =
+        context?.let {
+            it.checkPermissions(COARSE_PERMISSION) && it.checkPermissions(FINE_PERMISSION)
+        } ?: false
+
+    override fun requestPermissions() {
+        requestPermissions(arrayOf(COARSE_PERMISSION, FINE_PERMISSION), PERMISSION_ID)
+    }
+
+    override fun showErrorPermissions() {
+        view?.let {
+            Snackbar.make(it, R.string.permissions_error, Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            presenter.onPermissionsGranted()
+        } else {
+            presenter.onPermissionsRejected()
+        }
+    }
+
+    override fun checkGps(): Boolean {
+        val locationManager: LocationManager =
+            activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    }
+
+    override fun showErrorGps() {
+        // TODO: Change for dialog to request user to active location and intent to phone settings
+        view?.let {
+            Snackbar.make(it, R.string.location_gps_error, Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    override fun getUserLocation() {
+        activity?.let {
+            fusedLocationProviderClient = FusedLocationProviderClient(it)
+            fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null) {
+                    presenter.onLocationFinished(Pair(location.latitude, location.longitude))
+                } else {
+                    presenter.onLocationError()
+                }
+            }
+        }
+    }
+
+    override fun showErrorLocation() {
+        view?.let {
+            Snackbar.make(it, R.string.location_error, Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    override fun refreshMap(location: Pair<Double, Double>) {
+        val position = LatLng(location.first, location.second)
+        googleMap?.apply {
+            val cameraPosition: CameraPosition = CameraPosition.Builder()
+                .target(position)
+                .zoom(ZOOM_LEVEL)
+                .build()
+            this.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+            this.uiSettings.apply {
+                this.isZoomGesturesEnabled = false
+                this.isScrollGesturesEnabled = false
+                this.isMapToolbarEnabled = false
+                this.isCompassEnabled = false
+            }
+        }
+    }
+
     companion object {
         const val COARSE_PERMISSION = Manifest.permission.ACCESS_COARSE_LOCATION
+        const val FINE_PERMISSION = Manifest.permission.ACCESS_FINE_LOCATION
         const val MESSAGES = "messages"
+        const val PERMISSION_ID = 31
+        const val ZOOM_LEVEL = 15F
     }
 }

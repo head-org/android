@@ -11,15 +11,25 @@ interface MapContract {
 
         fun hideProgress()
 
+        fun addMarkers(messageUiModel: MessageUiModel)
+
+        fun configMarkers()
+
         fun checkPermissions(): Boolean
 
         fun requestPermissions()
 
-        fun disableIndicatorsButtons()
+        fun showErrorPermissions()
 
-        fun addMarkers(messageUiModel: MessageUiModel)
+        fun checkGps(): Boolean
 
-        fun setUpInfoMarkers()
+        fun showErrorGps()
+
+        fun getUserLocation()
+
+        fun refreshMap(location: Pair<Double, Double>)
+
+        fun showErrorLocation()
     }
 
     interface Presenter : BaseContract.Presenter<View> {
@@ -27,5 +37,13 @@ interface MapContract {
         fun setMessages(messageUiModel: MessageUiModel)
 
         fun onMapReady()
+
+        fun onPermissionsGranted()
+
+        fun onPermissionsRejected()
+
+        fun onLocationFinished(location: Pair<Double, Double>)
+
+        fun onLocationError()
     }
 }
