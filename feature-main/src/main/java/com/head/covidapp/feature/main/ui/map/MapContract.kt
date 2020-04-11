@@ -1,6 +1,6 @@
 package com.head.covidapp.feature.main.ui.map
 
-import com.head.covidapp.arch.contract.BaseContract
+import com.head.covidapp.feature.commons.arch.contract.BaseContract
 import com.head.covidapp.feature.main.ui.model.MessageUiModel
 
 interface MapContract {
@@ -30,6 +30,8 @@ interface MapContract {
         fun refreshMap(location: Pair<Double, Double>)
 
         fun showErrorLocation()
+
+        fun showDialog()
     }
 
     interface Presenter : BaseContract.Presenter<View> {
@@ -45,5 +47,9 @@ interface MapContract {
         fun onLocationFinished(location: Pair<Double, Double>)
 
         fun onLocationError()
+
+        fun onFloatingButtonClicked()
+
+        fun onSaveMessageClicked(message: Pair<String, String>?)
     }
 }

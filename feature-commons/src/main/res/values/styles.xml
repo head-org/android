@@ -1,15 +1,18 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/purple</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSecondary">@color/colorOnPrimary</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowAnimationStyle">@style/fullScreenDialogStyle</item>
+    </style>
+
+    <style name="fullScreenDialogStyle" parent="Theme.MaterialComponents.DayNight.DialogWhenLarge">
+        <item name="android:windowAnimationStyle">@style/Theme.AppCompat.DayNight.Dialog</item>
     </style>
 
 </resources>

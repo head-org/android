@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">CovidApp</string>
+
+    <!-- Map Fragment -->
     <string name="permissions_error">Please, enable the location permission to enjoy a better app experience.</string>
     <string name="location_gps_error">Please, enable the GPS in your device settings to enjoy a better app experience.</string>
     <string name="location_error">Please, enable the GPS in your device settings to enjoy a better app experience.</string>
+
+    <!-- Full Screen Dialog -->
+    <string name="new_message">New message</string>
+    <string name="title_hint">Title</string>
+    <string name="message_hint">Message</string>
+
+    <!-- Menu -->
+    <string name="save">Save</string>
+
 </resources>

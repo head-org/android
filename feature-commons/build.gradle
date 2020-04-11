@@ -24,6 +24,7 @@ dependencies {
     // Native libraries
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     api "com.google.android.material:material:$materialVersion"
+    api "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
     // Third-part libraries
     api "org.koin:koin-android:$koinVersion"
