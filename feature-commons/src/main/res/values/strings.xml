@@ -11,6 +11,7 @@
     <string name="new_message">New message</string>
     <string name="title_hint">Title</string>
     <string name="message_hint">Message</string>
+    <string name="mandatory_field">Mandatory field</string>
 
     <!-- Menu -->
     <string name="save">Save</string>
