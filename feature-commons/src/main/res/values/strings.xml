@@ -5,6 +5,7 @@
     <string name="permissions_error">Please, enable the location permission to enjoy a better app experience.</string>
     <string name="location_gps_error">Please, enable the GPS in your device settings to enjoy a better app experience.</string>
     <string name="location_error">Please, enable the GPS in your device settings to enjoy a better app experience.</string>
+    <string name="post_error">The message couldn\'t be published.</string>
 
     <!-- Full Screen Dialog -->
     <string name="new_message">New message</string>

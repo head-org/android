@@ -1,5 +1,6 @@
 package com.head.covidapp.feature.main.ui.map
 
+import com.head.covidapp.domain.models.message.MessageModel
 import com.head.covidapp.feature.commons.arch.contract.BaseContract
 import com.head.covidapp.feature.main.ui.model.MessageUiModel
 
@@ -11,7 +12,7 @@ interface MapContract {
 
         fun hideProgress()
 
-        fun addMarkers(messageUiModel: MessageUiModel)
+        fun addMarker(message: MessageModel)
 
         fun configMarkers()
 
@@ -32,6 +33,8 @@ interface MapContract {
         fun showErrorLocation()
 
         fun showDialog()
+
+        fun onErrorPostMessage()
     }
 
     interface Presenter : BaseContract.Presenter<View> {

@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
+import com.head.covidapp.domain.models.message.MessageModel
 import com.head.covidapp.feature.commons.components.FullScreenDialog
 import com.head.covidapp.feature.commons.extensions.checkPermissions
 import com.head.covidapp.feature.main.ui.model.MessageUiModel
@@ -86,18 +87,18 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
         progressBar.hide()
     }
 
-    override fun addMarkers(messageUiModel: MessageUiModel) {
-        messageUiModel.messageList.forEach {
+    override fun addMarker(message: MessageModel) {
+        message.apply {
             googleMap?.addMarker(
                 MarkerOptions()
                     .position(
                         LatLng(
-                            it.location.latitude,
-                            it.location.longitude
+                            this.location.latitude,
+                            this.location.longitude
                         )
                     )
-                    .title(it.title)
-                    .snippet(it.content)
+                    .title(this.title)
+                    .snippet(this.content)
             )
         }
     }
@@ -206,6 +207,12 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
     override fun showDialog() {
         FullScreenDialog.newInstance(onSaveMessageClicked)
             .show(childFragmentManager, FullScreenDialog.TAG)
+    }
+
+    override fun onErrorPostMessage() {
+        view?.let {
+            Snackbar.make(it, R.string.post_error, Snackbar.LENGTH_LONG).show()
+        }
     }
 
     companion object {

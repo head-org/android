@@ -8,5 +8,11 @@ import com.head.covidapp.domain.repositories.MessageRepository
 class MessageRepositoryImpl(private val messageApiDataSource: MessageApiDataSource) :
     MessageRepository {
 
-    override suspend fun getMessages(): Response<List<MessageModel>> = messageApiDataSource.getMessages()
+    override suspend fun getMessages(): Response<List<MessageModel>> =
+        messageApiDataSource.getMessages()
+
+    override suspend fun postMessage(
+        message: Pair<String, String>,
+        userLocation: Pair<Double, Double>
+    ): Response<MessageModel>  = messageApiDataSource.postMessage(message, userLocation)
 }
