@@ -1,4 +1,4 @@
-package com.head.covidapp.extensions
+package com.head.covidapp.feature.commons.extensions
 
 import android.content.Context
 import android.content.pm.PackageManager

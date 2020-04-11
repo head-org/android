@@ -20,18 +20,20 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
-import com.head.covidapp.extensions.checkPermissions
+import com.head.covidapp.feature.commons.components.FullScreenDialog
+import com.head.covidapp.feature.commons.extensions.checkPermissions
 import com.head.covidapp.feature.main.ui.model.MessageUiModel
 import com.head.covidapp.main.R
 import kotlinx.android.synthetic.main.map_fragment.*
 import org.koin.android.ext.android.inject
-
 
 class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapReadyCallback {
 
     private val presenter: MapContract.Presenter by inject()
     private var googleMap: GoogleMap? = null
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private var onSaveMessageClicked: (Pair<String, String>?) -> Unit =
+        { presenter.onSaveMessageClicked(it) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,9 +42,9 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
         presenter.setMessages(arguments?.getSerializable(MESSAGES) as MessageUiModel)
 
         map.onCreate(savedInstanceState)
-        map.getMapAsync(this)
 
         floatingActionButton.setOnClickListener {
+            presenter.onFloatingButtonClicked()
         }
     }
 
@@ -55,6 +57,7 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
     override fun onResume() {
         super.onResume()
 
+        map.getMapAsync(this)
         map.onResume()
     }
 
@@ -198,6 +201,11 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
                 this.isCompassEnabled = false
             }
         }
+    }
+
+    override fun showDialog() {
+        FullScreenDialog.newInstance(onSaveMessageClicked)
+            .show(childFragmentManager, FullScreenDialog.TAG)
     }
 
     companion object {

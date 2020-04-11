@@ -1,11 +1,13 @@
 package com.head.covidapp.feature.main.ui.map
 
+import android.util.Log
 import com.head.covidapp.feature.main.ui.model.MessageUiModel
 
 class MapPresenter : MapContract.Presenter {
 
     override var view: MapContract.View? = null
-    lateinit var messageUiModel: MessageUiModel
+    private lateinit var messageUiModel: MessageUiModel
+    private lateinit var userLocation: Pair<Double, Double>
 
     override fun attachView(view: MapContract.View) {
         super.attachView(view)
@@ -47,10 +49,26 @@ class MapPresenter : MapContract.Presenter {
     }
 
     override fun onLocationFinished(location: Pair<Double, Double>) {
+        userLocation = location
         view?.refreshMap(location)
     }
 
     override fun onLocationError() {
         view?.showErrorLocation()
+    }
+
+    override fun onFloatingButtonClicked() {
+        view?.showDialog()
+    }
+
+    override fun onSaveMessageClicked(message: Pair<String, String>?) {
+        message?.let {
+            publishMessage(message, userLocation)
+        }
+    }
+
+    private fun publishMessage(message: Pair<String, String>, userLocation: Pair<Double, Double>) {
+        Log.d("TITLE: ", message.first)
+        Log.d("MENSAJE: ", message.second)
     }
 }
