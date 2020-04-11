@@ -7,6 +7,8 @@ interface SplashContract {
 
     interface View : BaseContract.View {
 
+        suspend fun startAnimation()
+
         fun navigateToMapFragment(messageUiModel: MessageUiModel)
     }
 

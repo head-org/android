@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CovidApp</string>
+    <string name="app_name">Miso</string>
 
     <!-- Map Fragment -->
     <string name="permissions_error">Please, enable the location permission to enjoy a better app experience.</string>
