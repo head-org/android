@@ -197,7 +197,6 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
             this.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
             this.uiSettings.apply {
                 this.isZoomGesturesEnabled = false
-                this.isScrollGesturesEnabled = false
                 this.isMapToolbarEnabled = false
                 this.isCompassEnabled = false
             }
