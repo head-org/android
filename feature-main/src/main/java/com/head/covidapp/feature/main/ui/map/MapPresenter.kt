@@ -19,17 +19,39 @@ class MapPresenter : MapContract.Presenter {
 
     override fun onMapReady() {
         view?.disableIndicatorsButtons()
-        takeIf { messageUiModel.messageList.isNotEmpty() }.let {
+        takeIf { messageUiModel.messageList.isNotEmpty() }?.let {
             view?.apply {
                 this.addMarkers(messageUiModel)
                 this.setUpInfoMarkers()
                 this.hideProgress()
+                takeIf { this.checkPermissions() }?.let {
+                    manageLocation()
+                } ?: this.requestPermissions()
             }
+        } ?: view?.hideProgress()
+    }
+
+    override fun onPermissionsGranted() {
+        manageLocation()
+    }
+
+    private fun manageLocation() {
+        view?.let { view ->
+            takeIf { view.checkGps() }?.let {
+                view.getUserLocation()
+            } ?: view.showErrorGps()
         }
-        /*if (view?.checkPermissions() == true) {
-            view?.addMarkers()
-        } else {
-            view?.requestPermissions()
-        }*/
+    }
+
+    override fun onPermissionsRejected() {
+        view?.showErrorPermissions()
+    }
+
+    override fun onLocationFinished(location: Pair<Double, Double>) {
+        view?.refreshMap(location)
+    }
+
+    override fun onLocationError() {
+        view?.showErrorLocation()
     }
 }

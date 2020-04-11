@@ -8,6 +8,6 @@ import androidx.core.app.ActivityCompat
 fun Context.checkPermissions(permission: String): Boolean =
     ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
 
-fun Activity.requestPermission(permission: String, requestCode: Int = 1) {
-    ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
+fun Activity.requestPermission(permission: Array<String>, requestCode: Int = 1) {
+    ActivityCompat.requestPermissions(this, permission, requestCode)
 }
