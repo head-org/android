@@ -1,4 +1,4 @@
-rootProject.name='CovidApp'
+rootProject.name='miso'
 include ':app'
 include ':data'
 include ':datasource-network'
