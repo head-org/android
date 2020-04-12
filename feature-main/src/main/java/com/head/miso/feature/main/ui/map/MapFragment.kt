@@ -43,6 +43,7 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
         presenter.setMessages(arguments?.getSerializable(MESSAGES) as MessageUiModel)
 
         map.onCreate(savedInstanceState)
+        map.getMapAsync(this)
 
         floatingActionButton.setOnClickListener {
             presenter.onFloatingButtonClicked()
@@ -58,7 +59,6 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
     override fun onResume() {
         super.onResume()
 
-        map.getMapAsync(this)
         map.onResume()
     }
 
@@ -139,9 +139,7 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
     }
 
     override fun showErrorPermissions() {
-        view?.let {
-            Snackbar.make(it, R.string.permissions_error, Snackbar.LENGTH_LONG).show()
-        }
+        showError(R.string.permissions_error)
     }
 
     override fun onRequestPermissionsResult(
@@ -165,9 +163,7 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
 
     override fun showErrorGps() {
         // TODO: Change for dialog to request user to active location and intent to phone settings
-        view?.let {
-            Snackbar.make(it, R.string.location_gps_error, Snackbar.LENGTH_LONG).show()
-        }
+        showError(R.string.location_gps_error)
     }
 
     override fun getUserLocation() {
@@ -184,9 +180,7 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
     }
 
     override fun showErrorLocation() {
-        view?.let {
-            Snackbar.make(it, R.string.location_error, Snackbar.LENGTH_LONG).show()
-        }
+        showError(R.string.location_error)
     }
 
     override fun refreshMap(location: Pair<Double, Double>) {
@@ -211,8 +205,15 @@ class MapFragment : Fragment(R.layout.map_fragment), MapContract.View, OnMapRead
     }
 
     override fun onErrorPostMessage() {
+        showError(R.string.post_error)
+    }
+
+    private fun showError(error: Int) {
         view?.let {
-            Snackbar.make(it, R.string.post_error, Snackbar.LENGTH_LONG).show()
+            val snackBar: Snackbar = Snackbar.make(it, error, Snackbar.LENGTH_LONG)
+            (snackBar.view.findViewById<View>(com.google.android.material.R.id.snackbar_text)
+                    as? TextView)?.maxLines = 5
+            snackBar.show()
         }
     }
 
