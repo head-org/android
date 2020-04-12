@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.head.covidapp.feature.main.ui.splash.SplashFragment"
+        android:name="com.head.miso.feature.main.ui.splash.SplashFragment"
         android:label="SplashFragment">
 
         <action
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.head.covidapp.feature.main.ui.map.MapFragment"
+        android:name="com.head.miso.feature.main.ui.map.MapFragment"
         android:label="MapFragment">
 
         <action
